@@ -17,6 +17,10 @@ const SignIn = () => {
 
   const accessToken = localStorage.getItem("access_token");
 
+  const handleBackSpace = () => {
+    navigate(`/`);
+  };
+
   const handleCheckSignUp = (e) => {
     const currentEmail = e.target.value;
     const emailRegex =
@@ -72,6 +76,9 @@ const SignIn = () => {
     <Container>
       <SignInBox>
         <form onSubmit={handleSubmitSignIn}>
+          <button id="back-btn" onClick={handleBackSpace}>
+            뒤로가기
+          </button>
           <ContentBox>
             <div className="group">
               <input
@@ -135,6 +142,21 @@ const SignInBox = styled.section`
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
     border-radius: 20px;
     background-color: white;
+  }
+  #back-btn {
+    padding: 0.5em 1em 0.5em 1em;
+    background-color: #9c9c9c;
+    color: white;
+    font-weight: bold;
+    border: none;
+    transition: all 0.2s ease 0s;
+    border-radius: 5px;
+    &:hover {
+      color: black;
+      background-color: white;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+      transition: all 0.2s ease 0s;
+    }
   }
   .signin-btn {
     width: 100%;
