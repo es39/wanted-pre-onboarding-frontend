@@ -27,10 +27,14 @@ const SignIn = () => {
         password,
       })
       .then((res) => {
+        alert("로그인 성공");
         localStorage.setItem("access_token", res.data.access_token);
         navigate("/todo");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert("로그인에 실패했습니다. 다시 시도해주세요");
+      });
   };
 
   useEffect(() => {

@@ -55,7 +55,10 @@ const SignUp = () => {
         alert("회원가입 성공");
         navigate(`/signin`);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        alert("회원가입에 실패했습니다. 다시 확인해주세요");
+      });
   };
 
   useEffect(() => {
