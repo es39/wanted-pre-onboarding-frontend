@@ -3,7 +3,7 @@ import "./App.css";
 import Main from "./Main";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import TodoList from "./TodoList";
+import Todo from "./Todo";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
           <Route path="/" element={<Main />}></Route>
           <Route path="/signup" element={<SignUp />}></Route>
           <Route path="/signin" element={<SignIn />}></Route>
-          <Route path="/todo" element={<TodoList />}></Route>
+          <Route path="/todo" element={<Todo />}></Route>
         </Routes>
       </main>
     </BrowserRouter>
