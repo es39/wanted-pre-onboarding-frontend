@@ -15,10 +15,12 @@ const Main = () => {
 
   return (
     <Container>
-      <ButtonWrapper>
-        <ButtonStyle onClick={handleNavigateSignUp}>회원가입</ButtonStyle>
-        <ButtonStyle onClick={handleNavigateSignIn}>로그인</ButtonStyle>
-      </ButtonWrapper>
+      <SingUpBox>
+        <ButtonWrapper>
+          <Button onClick={handleNavigateSignUp}>회원가입 하기</Button>
+          <Button onClick={handleNavigateSignIn}>로그인 하기</Button>
+        </ButtonWrapper>
+      </SingUpBox>
     </Container>
   );
 };
@@ -29,24 +31,37 @@ const Container = styled.main`
   align-items: center;
   flex-direction: column;
 `;
-const ButtonWrapper = styled.div`
+const SingUpBox = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  margin: 0.5em;
+  background-color: white;
+  width: 80%;
+  height: 100%;
 `;
-const ButtonStyle = styled.button`
+const ButtonWrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 0.5em;
+  width: 100%;
+  height: 100%;
+`;
+const Button = styled.button`
   background-color: #feb35c;
   color: white;
   border: none;
   transition: all 0.2s ease 0s;
-  width: 80px;
+  width: 80%;
   height: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   cursor: pointer;
   text-align: center;
-  font-size: 0.85rem;
+  font-size: 1.5rem;
+  margin-left: 0.5em;
+  margin-right: 0.5em;
+  padding: 1em;
+  font-weight: bold;
   &:hover {
     color: black;
     background-color: white;
