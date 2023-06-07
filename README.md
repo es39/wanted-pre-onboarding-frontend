@@ -16,7 +16,7 @@
 - LocalStorage에 access token이 있는 경우, 접근할 수 없도록 구현<br />
 ### 3. 로그인 페이지<br />
 - 가입한 이메일과 비밀번호를 입력하여 일치할 경우, 로그인이 되도록 구현<br />
-- 로그인 성공 시, LocalStorage에 access token이 저장하도록 구현<br />
+- 로그인 성공 시, LocalStorage에 access token이 저장되도록 구현<br />
 - 로그인 성공 시, Todo List 페이지로 이동하도록 구현<br />
 - LocalStorage에 access token이 있는 경우, 접근할 수 없도록 구현<br />
 ### 4. Todo 페이지 <br />
