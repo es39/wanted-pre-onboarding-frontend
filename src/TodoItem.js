@@ -18,6 +18,17 @@ const TodoItem = ({ todo, setTodos }) => {
 
   // * 목록 수정 요청
   const handleUpdateTodo = async (id) => {
+    updateTodos(id);
+    getTodos();
+  };
+
+  // * 목록 삭제 요청
+  const handleDeleteTodo = async (id) => {
+    deleteTodos(id);
+    getTodos();
+  };
+
+  const updateTodos = async (id) => {
     await customAxios
       .put(
         `/todos/${id}`,
@@ -27,22 +38,18 @@ const TodoItem = ({ todo, setTodos }) => {
         }
       )
       .catch((err) => console.log(err));
-    await customAxios
-      .get(`/todos`, {
-        headers: { Authorization: `Bearer ${accessToken}` },
-      })
-      .then((res) => setTodos(res.data))
-      .catch((err) => console.log(err));
   };
 
-  // * 목록 삭제 요청
-  const handleDeleteTodo = async (id) => {
+  const deleteTodos = async (id) => {
     await customAxios
       .delete(`/todos/${id}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .catch((err) => console.log(err));
-    customAxios
+  };
+
+  const getTodos = async () => {
+    await customAxios
       .get(`/todos`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
