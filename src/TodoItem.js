@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import customAxios from "./customAxios";
 
 const TodoItem = ({ todo, setTodos }) => {
+  const [editSelect, setEditSelect] = useState(false);
+  const [editContent, setEditContent] = useState(todo.todo);
+
   const accessToken = localStorage.getItem("access_token");
 
+  const handleEditContent = (e) => {
+    setEditContent(e.target.value);
+  };
+
+  const handleClickEdit = () => {
+    setEditSelect(!editSelect);
+  };
+
   const handleUpdateTodo = async (id) => {
-    await customAxios.put(`/todos/${id}`);
+    await customAxios
+      .put(
+        `/todos/${id}`,
+        { todo: editContent, isCompleted: true },
+        {
+          headers: { Authorization: `Bearer ${accessToken}` },
+        }
+      )
+      .catch((err) => console.log(err));
+    await customAxios
+      .get(`/todos`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((res) => setTodos(res.data))
+      .catch((err) => console.log(err));
   };
 
   const handleDeleteTodo = async (id) => {
@@ -26,21 +51,29 @@ const TodoItem = ({ todo, setTodos }) => {
   return (
     <Container>
       <input type="checkbox"></input>
-      <div className="todo-name">{todo.todo}</div>
-      <ButtonWrapper>
-        <button
-          data-testid="modify-button"
-          onClick={() => handleUpdateTodo(todo.id)}
-        >
-          수정
-        </button>
-        <button
-          data-testid="delete-button"
-          onClick={() => handleDeleteTodo(todo.id)}
-        >
-          삭제
-        </button>
-      </ButtonWrapper>
+      {editSelect === false ? (
+        <div className="todo-name">{todo.todo}</div>
+      ) : (
+        <input onChange={handleEditContent} value={todo.todo}></input>
+      )}
+      {editSelect === false ? (
+        <ButtonWrapper>
+          <button data-testid="modify-button" onClick={handleClickEdit}>
+            수정
+          </button>
+          <button
+            data-testid="delete-button"
+            onClick={() => handleDeleteTodo(todo.id)}
+          >
+            삭제
+          </button>
+        </ButtonWrapper>
+      ) : (
+        <ButtonWrapper>
+          <button onClick={() => handleUpdateTodo(todo.id)}>제출</button>
+          <button onClick={handleClickEdit}>취소</button>
+        </ButtonWrapper>
+      )}
     </Container>
   );
 };
