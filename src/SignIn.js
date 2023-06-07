@@ -7,16 +7,41 @@ const SignIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [emailMessage, setEmailMessage] = useState("");
+  const [passwordMessage, setPasswordMessage] = useState("");
+
+  const [isEmail, setIsEmail] = useState(false);
+  const [isPassword, setIsPassword] = useState(false);
+
   const navigate = useNavigate();
 
   const accessToken = localStorage.getItem("access_token");
 
-  const handleCurrentEmail = (e) => {
-    setEmail(e.target.value);
+  const handleCheckSignUp = (e) => {
+    const currentEmail = e.target.value;
+    const emailRegex =
+      /^[a-zA-Z0-9ㄱ-힣.\-_]+@([a-zA-Z0-9-]+\.)+[a-zA-Z]{2,}$/i;
+    setEmail(currentEmail);
+    if (!emailRegex.test(currentEmail)) {
+      setEmailMessage("@를 포함하여 이메일 형식으로 작성해주세요");
+      setIsEmail(false);
+    } else {
+      setEmailMessage("@를 포함하여 이메일 형식으로 작성되었습니다.");
+      setIsEmail(true);
+    }
   };
 
-  const handleCurrentPassword = (e) => {
-    setPassword(e.target.value);
+  const handleCheckPassword = (e) => {
+    const currentPassword = e.target.value;
+    const pwRegex = /^[a-zA-Z0-9ㄱ-힣]{8,}$/i;
+    setPassword(currentPassword);
+    if (!pwRegex.test(currentPassword)) {
+      setPasswordMessage("8자리 이상 입력해주세요");
+      setIsPassword(false);
+    } else {
+      setPasswordMessage("8자리 이상 입력되었습니다.");
+      setIsPassword(true);
+    }
   };
 
   const handleSubmitSignIn = async (e) => {
@@ -53,18 +78,32 @@ const SignIn = () => {
                 type="text"
                 placeholder="이메일을 입력해주세요"
                 data-testid="email-input"
-                onChange={handleCurrentEmail}
+                onChange={handleCheckSignUp}
               />
+              {email.length > 0 && (
+                <span className={`message ${isEmail ? "success" : "error"}`}>
+                  {emailMessage}
+                </span>
+              )}
             </div>
             <div className="group">
               <input
                 type="password"
                 placeholder="비밀번호를 입력해주세요"
                 data-testid="password-input"
-                onChange={handleCurrentPassword}
+                onChange={handleCheckPassword}
               />
+              {password.length > 0 && (
+                <span className={`message ${isPassword ? "success" : "error"}`}>
+                  {passwordMessage}
+                </span>
+              )}
             </div>
-            <button data-testid="signin-button" className="signin-btn">
+            <button
+              data-testid="signin-button"
+              className="signin-btn"
+              disabled={!(isEmail && isPassword)}
+            >
               로그인
             </button>
           </ContentBox>
