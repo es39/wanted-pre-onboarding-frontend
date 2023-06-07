@@ -55,17 +55,20 @@ const TodoItem = ({ todo, setTodos }) => {
   };
 
   return (
-    <Container>
-      <input type="checkbox"></input>
-      {editSelect === false ? (
-        <div className="todo-name">{todo.todo}</div>
-      ) : (
-        <input
-          className="todo-input"
-          onChange={handleEditContent}
-          value={editContent}
-        ></input>
-      )}
+    <li>
+      <label>
+        <input type="checkbox" />
+        {editSelect === false ? (
+          <span className="todo-name">{todo.todo}</span>
+        ) : (
+          <input
+            className="todo-input"
+            onChange={handleEditContent}
+            value={editContent}
+            data-testid="modify-input"
+          />
+        )}
+      </label>
       {editSelect === false ? (
         <ButtonWrapper>
           <button data-testid="modify-button" onClick={handleClickEdit}>
@@ -80,13 +83,19 @@ const TodoItem = ({ todo, setTodos }) => {
         </ButtonWrapper>
       ) : (
         <ButtonWrapper>
-          <button onClick={() => handleUpdateTodo(todo.id)} value={editContent}>
+          <button
+            onClick={() => handleUpdateTodo(todo.id)}
+            value={editContent}
+            data-testid="submit-button"
+          >
             제출
           </button>
-          <button onClick={handleClickEdit}>취소</button>
+          <button onClick={handleClickEdit} data-testid="cancel-button">
+            취소
+          </button>
         </ButtonWrapper>
       )}
-    </Container>
+    </li>
   );
 };
 
@@ -97,7 +106,7 @@ const Container = styled.main`
     width: 100vw;
   }
 `;
-const ButtonWrapper = styled.section`
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;

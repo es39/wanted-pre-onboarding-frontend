@@ -8,9 +8,7 @@ const TodoList = ({ todos, setTodos }) => {
       <ul>
         {todos.length !== 0 ? (
           todos.map((todo) => (
-            <li key={todo.id}>
-              <TodoItem key={todo.id} todo={todo} setTodos={setTodos} />
-            </li>
+            <TodoItem key={todo.id} todo={todo} setTodos={setTodos} />
           ))
         ) : (
           <div className="todo-empty">목록이 없습니다.</div>
