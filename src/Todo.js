@@ -13,15 +13,14 @@ const Todo = () => {
   const accessToken = localStorage.getItem("access_token");
 
   // * 목록 조회 요청
-  const getTodos = () => {
-    customAxios
+  const getTodos = async () => {
+    await customAxios
       .get(`/todos`, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
         },
       })
       .then((res) => {
-        console.log(res);
         setTodos(res.data);
       })
       .catch((err) => console.log(err));

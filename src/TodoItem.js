@@ -18,17 +18,6 @@ const TodoItem = ({ todo, setTodos }) => {
 
   // * 목록 수정 요청
   const handleUpdateTodo = async (id) => {
-    updateTodos(id);
-    getTodos();
-  };
-
-  // * 목록 삭제 요청
-  const handleDeleteTodo = async (id) => {
-    deleteTodos(id);
-    getTodos();
-  };
-
-  const updateTodos = async (id) => {
     await customAxios
       .put(
         `/todos/${id}`,
@@ -37,18 +26,26 @@ const TodoItem = ({ todo, setTodos }) => {
           headers: { Authorization: `Bearer ${accessToken}` },
         }
       )
+      .then(() => {
+        setEditContent(editContent);
+        setEditSelect(!editSelect);
+      })
+      .catch((err) => console.log(err));
+    await customAxios
+      .get(`/todos`, {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      })
+      .then((res) => setTodos(res.data))
       .catch((err) => console.log(err));
   };
 
-  const deleteTodos = async (id) => {
+  // * 목록 삭제 요청
+  const handleDeleteTodo = async (id) => {
     await customAxios
       .delete(`/todos/${id}`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
       .catch((err) => console.log(err));
-  };
-
-  const getTodos = async () => {
     await customAxios
       .get(`/todos`, {
         headers: { Authorization: `Bearer ${accessToken}` },
@@ -63,7 +60,11 @@ const TodoItem = ({ todo, setTodos }) => {
       {editSelect === false ? (
         <div className="todo-name">{todo.todo}</div>
       ) : (
-        <input onChange={handleEditContent} value={todo.todo}></input>
+        <input
+          className="todo-input"
+          onChange={handleEditContent}
+          value={editContent}
+        ></input>
       )}
       {editSelect === false ? (
         <ButtonWrapper>
@@ -79,7 +80,9 @@ const TodoItem = ({ todo, setTodos }) => {
         </ButtonWrapper>
       ) : (
         <ButtonWrapper>
-          <button onClick={() => handleUpdateTodo(todo.id)}>제출</button>
+          <button onClick={() => handleUpdateTodo(todo.id)} value={editContent}>
+            제출
+          </button>
           <button onClick={handleClickEdit}>취소</button>
         </ButtonWrapper>
       )}
@@ -91,13 +94,17 @@ export default TodoItem;
 
 const Container = styled.main`
   display: flex;
+  width: 100%;
   .todo-name {
+    width: 100%;
+  }
+  .todo-input {
     width: 100%;
   }
 `;
 const ButtonWrapper = styled.section`
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   align-items: center;
-  width: 100%;
+  width: 50%;
 `;

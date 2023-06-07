@@ -13,11 +13,6 @@ const TodoCreate = ({ setTodos }) => {
 
   // * 목록 추가 요청
   const handleCreateTodo = async () => {
-    addTodos();
-    getTodos();
-  };
-
-  const addTodos = async () => {
     await customAxios
       .post(
         `/todos`,
@@ -30,9 +25,6 @@ const TodoCreate = ({ setTodos }) => {
       )
       .then(() => setCreateTodo(""))
       .catch((err) => console.log(err));
-  };
-
-  const getTodos = async () => {
     await customAxios
       .get(`/todos`, {
         headers: { Authorization: `Bearer ${accessToken}` },
