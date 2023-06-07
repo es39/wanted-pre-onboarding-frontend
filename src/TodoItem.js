@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import customAxios from "./customAxios";
 
-const TodoItme = ({ todo, setTodos }) => {
+const TodoItem = ({ todo, setTodos }) => {
   const accessToken = localStorage.getItem("access_token");
 
   const handleUpdateTodo = async (id) => {
@@ -26,27 +26,36 @@ const TodoItme = ({ todo, setTodos }) => {
   return (
     <Container>
       <input type="checkbox"></input>
-      <div>{todo.todo}</div>
-      <button
-        data-testid="modify-button"
-        onClick={() => handleUpdateTodo(todo.id)}
-      >
-        수정
-      </button>
-      <button
-        data-testid="delete-button"
-        onClick={() => handleDeleteTodo(todo.id)}
-      >
-        삭제
-      </button>
+      <div className="todo-name">{todo.todo}</div>
+      <ButtonWrapper>
+        <button
+          data-testid="modify-button"
+          onClick={() => handleUpdateTodo(todo.id)}
+        >
+          수정
+        </button>
+        <button
+          data-testid="delete-button"
+          onClick={() => handleDeleteTodo(todo.id)}
+        >
+          삭제
+        </button>
+      </ButtonWrapper>
     </Container>
   );
 };
 
-export default TodoItme;
+export default TodoItem;
 
 const Container = styled.main`
   display: flex;
+  .todo-name {
+    width: 100%;
+  }
+`;
+const ButtonWrapper = styled.section`
+  display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 `;

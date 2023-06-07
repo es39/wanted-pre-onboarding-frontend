@@ -8,7 +8,9 @@ const TodoList = ({ todos, setTodos }) => {
       <ul>
         {todos ? (
           todos.map((todo) => (
-            <TodoItem key={todo.id} todo={todo} setTodos={setTodos} />
+            <li key={todo.id}>
+              <TodoItem key={todo.id} todo={todo} setTodos={setTodos} />
+            </li>
           ))
         ) : (
           <div>목록이 없습니다.</div>
@@ -25,4 +27,7 @@ const Container = styled.main`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  > ul {
+    width: 100%;
+  }
 `;
