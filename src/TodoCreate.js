@@ -42,7 +42,7 @@ const TodoCreate = ({ setTodos }) => {
         placeholder="할 일을 입력해주세요."
         onChange={handleChangeTodo}
         value={createTodo}
-      ></input>
+      />
       <button data-testid="new-todo-add-button" onClick={handleCreateTodo}>
         추가
       </button>
