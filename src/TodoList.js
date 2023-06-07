@@ -1,7 +1,28 @@
 import React from "react";
+import styled from "styled-components";
+import TodoItem from "./TodoItem";
 
-const TodoList = () => {
-  return <div>투두리스트</div>;
+const TodoList = ({ todos, setTodos }) => {
+  return (
+    <Container>
+      <ul>
+        {todos ? (
+          todos.map((todo) => (
+            <TodoItem key={todo.id} todo={todo} setTodos={setTodos} />
+          ))
+        ) : (
+          <div>목록이 없습니다.</div>
+        )}
+      </ul>
+    </Container>
+  );
 };
 
 export default TodoList;
+
+const Container = styled.main`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
