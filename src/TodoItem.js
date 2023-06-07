@@ -70,7 +70,7 @@ const TodoItem = ({ todo, setTodos }) => {
         )}
       </label>
       {editSelect === false ? (
-        <ButtonWrapper>
+        <>
           <button data-testid="modify-button" onClick={handleClickEdit}>
             수정
           </button>
@@ -80,9 +80,9 @@ const TodoItem = ({ todo, setTodos }) => {
           >
             삭제
           </button>
-        </ButtonWrapper>
+        </>
       ) : (
-        <ButtonWrapper>
+        <>
           <button
             onClick={() => handleUpdateTodo(todo.id)}
             value={editContent}
@@ -93,7 +93,7 @@ const TodoItem = ({ todo, setTodos }) => {
           <button onClick={handleClickEdit} data-testid="cancel-button">
             취소
           </button>
-        </ButtonWrapper>
+        </>
       )}
     </Container>
   );
@@ -111,9 +111,4 @@ const Container = styled.li`
     width: 100%;
     padding: 0.5em;
   }
-`;
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
 `;

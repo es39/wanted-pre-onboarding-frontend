@@ -28,7 +28,7 @@ const Todo = () => {
 
   useEffect(() => {
     getTodos();
-  }, []);
+  }, [accessToken]);
 
   useEffect(() => {
     if (!localStorage.getItem("access_token")) {
