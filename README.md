@@ -22,3 +22,4 @@
 ### 4. Todo 페이지 <br />
 - LocalStorage에 access token이 있는 경우에만 접근할 수 있도록 구현<br />
 - Todo List에 대하여 CRUD 기능 구현
+- 체크 박스 클릭 시, 체크 여부 기능 구현
