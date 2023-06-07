@@ -38,7 +38,7 @@ const Todo = () => {
 
   return (
     <Container>
-      <TodoCreate todos={todos} setTodos={setTodos} />
+      <TodoCreate setTodos={setTodos} />
       <TodoList todos={todos} setTodos={setTodos} />
     </Container>
   );
