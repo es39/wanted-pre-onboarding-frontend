@@ -47,8 +47,5 @@ const Todo = () => {
 export default Todo;
 
 const Container = styled.main`
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
 `;

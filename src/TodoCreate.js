@@ -52,8 +52,9 @@ const TodoCreate = ({ setTodos }) => {
 
 export default TodoCreate;
 
-const Container = styled.main`
+const Container = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
 `;

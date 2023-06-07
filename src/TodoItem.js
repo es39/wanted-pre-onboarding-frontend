@@ -93,18 +93,13 @@ const TodoItem = ({ todo, setTodos }) => {
 export default TodoItem;
 
 const Container = styled.main`
-  display: flex;
-  width: 100%;
-  .todo-name {
-    width: 100%;
-  }
   .todo-input {
-    width: 100%;
+    width: 100vw;
   }
 `;
 const ButtonWrapper = styled.section`
   display: flex;
-  justify-content: flex-end;
+  justify-content: flex-start;
   align-items: center;
   width: 50%;
 `;
