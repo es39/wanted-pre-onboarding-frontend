@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import styled from "styled-components";
 import customAxios from "./customAxios";
 
-const TodoCreate = ({ todos, setTodos }) => {
+const TodoCreate = ({ setTodos }) => {
   const [createTodo, setCreateTodo] = useState("");
 
   const accessToken = localStorage.getItem("access_token");
@@ -11,16 +11,16 @@ const TodoCreate = ({ todos, setTodos }) => {
     setCreateTodo(e.target.value);
   };
 
-  const handleCreateTodos = async () => {
+  const handleCreateTodo = async () => {
     await customAxios
       .post(
         `/todos`,
+        { todo: createTodo },
         {
-          hedaers: {
+          headers: {
             Authorization: `Bearer ${accessToken}`,
           },
-        },
-        { todo: createTodo }
+        }
       )
       .then(() => setCreateTodo(""))
       .catch((err) => console.log(err));
@@ -28,7 +28,9 @@ const TodoCreate = ({ todos, setTodos }) => {
       .get(`/todos`, {
         headers: { Authorization: `Bearer ${accessToken}` },
       })
-      .then((res) => setTodos(res.data))
+      .then((res) => {
+        setTodos(res.data);
+      })
       .catch((err) => console.log(err));
   };
 
@@ -38,9 +40,10 @@ const TodoCreate = ({ todos, setTodos }) => {
         data-testid="new-todo-input"
         placeholder="할 일을 입력해주세요."
         onChange={handleChangeTodo}
+        value={createTodo}
       ></input>
-      <button data-testid="new-todo-add-button" onClick={handleCreateTodos}>
-        할 일 추가
+      <button data-testid="new-todo-add-button" onClick={handleCreateTodo}>
+        추가
       </button>
     </Container>
   );
