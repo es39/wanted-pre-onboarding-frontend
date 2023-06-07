@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import customAxios from "./customAxios";
@@ -14,6 +14,8 @@ const SignUp = () => {
   const [isPassword, setIsPassword] = useState(false);
 
   const navigate = useNavigate();
+
+  const accessToken = localStorage.getItem("access_token");
 
   const handleCheckSignUp = (e) => {
     const currentEmail = e.target.value;
@@ -55,6 +57,14 @@ const SignUp = () => {
       })
       .catch((err) => console.log(err));
   };
+
+  useEffect(() => {
+    if (accessToken) {
+      navigate(`/todo`);
+    } else if (accessToken === null) {
+      navigate(`/signup`);
+    }
+  }, [accessToken]);
 
   return (
     <Container>
