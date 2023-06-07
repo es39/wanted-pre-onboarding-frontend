@@ -55,7 +55,7 @@ const TodoItem = ({ todo, setTodos }) => {
   };
 
   return (
-    <li>
+    <Container>
       <label>
         <input type="checkbox" />
         {editSelect === false ? (
@@ -95,20 +95,25 @@ const TodoItem = ({ todo, setTodos }) => {
           </button>
         </ButtonWrapper>
       )}
-    </li>
+    </Container>
   );
 };
 
 export default TodoItem;
 
-const Container = styled.main`
-  .todo-input {
-    width: 100vw;
+const Container = styled.li`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0.5em;
+  .todo-name {
+    width: 100%;
+    padding: 0.5em;
   }
 `;
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  width: 50%;
 `;

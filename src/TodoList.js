@@ -22,12 +22,17 @@ export default TodoList;
 
 const Container = styled.section`
   display: flex;
+  justify-content: flex-start;
   align-items: center;
   flex-direction: column;
   width: 100%;
   height: 100vh;
   > ul {
-    width: 100%;
+    width: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
   }
   .todo-empty {
     width: 100vw;
