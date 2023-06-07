@@ -16,6 +16,7 @@ const TodoItem = ({ todo, setTodos }) => {
     setEditSelect(!editSelect);
   };
 
+  // * 목록 수정 요청
   const handleUpdateTodo = async (id) => {
     await customAxios
       .put(
@@ -34,6 +35,7 @@ const TodoItem = ({ todo, setTodos }) => {
       .catch((err) => console.log(err));
   };
 
+  // * 목록 삭제 요청
   const handleDeleteTodo = async (id) => {
     await customAxios
       .delete(`/todos/${id}`, {

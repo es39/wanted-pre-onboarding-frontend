@@ -12,6 +12,7 @@ const Todo = () => {
 
   const accessToken = localStorage.getItem("access_token");
 
+  // * 목록 조회 요청
   const getTodos = () => {
     customAxios
       .get(`/todos`, {
