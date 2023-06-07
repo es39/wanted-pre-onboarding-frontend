@@ -13,10 +13,12 @@
 ### 2. 회원가입 페이지<br />
 - 이메일과 비밀번호를 입력 후, 회원가입 버튼을 클릭하면 회원가입이 진행되도록 구현<br />
 - 이메일의 경우 '@'를 포함한 이메일 형식으로 작성했을 경우, 비밀번호는 8자 이상 입력했을 경우에 회원가입이 진행되도록 구현<br />
+- LocalStorage에 access token이 있는 경우, 접근할 수 없도록 구현<br />
 ### 3. 로그인 페이지<br />
 - 가입한 이메일과 비밀번호를 입력하여 일치할 경우, 로그인이 되도록 구현<br />
-- 로그인 성공 시, LocalStorage에 access_token 저장하도록 구현<br />
+- 로그인 성공 시, LocalStorage에 access token이 저장하도록 구현<br />
 - 로그인 성공 시, Todo List 페이지로 이동하도록 구현<br />
-- 경로 : Todo('/todo')<br />
+- LocalStorage에 access token이 있는 경우, 접근할 수 없도록 구현<br />
 ### 4. Todo 페이지 <br />
-- 로그인 후, 
+- LocalStorage에 access token이 있는 경우에만 접근할 수 있도록 구현<br />
+- Todo List에 대하여 CRUD 기능 구현
